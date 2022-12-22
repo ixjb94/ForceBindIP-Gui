@@ -4,6 +4,10 @@ A GUI For ForceBindIP
 A Simple Application Written In AutoIt Programming language   
 ![alt text](https://raw.githubusercontent.com/ixjb94/ForceBindIP-Gui/master/Preview6.png  "(Preview)ForceBindIP - By IX JB")
 
+## Download
+[Force Bind IP x86](https://github.com/ixjb94/ForceBindIP-Gui/releases/download/binary/ForceBindIP.-.Gui.exe)    
+[Force Bind IP x64](https://github.com/ixjb94/ForceBindIP-Gui/releases/download/binary/ForceBindIP.-.Download_x64.exe)    
+
 ## Automatic 
 1. Run ForceBindIP-Gui.exe ( or compile .au3 it then open if u want )    
 2. Click On "Download and Config"
