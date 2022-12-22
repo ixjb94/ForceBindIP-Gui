@@ -251,7 +251,7 @@ Func GetFileDownload()
     If FileExists(@ScriptDir & "\ForceBindIP - Download.exe") Then; System64
 		Return Null
 	Else
-		InetGet ( "https://raw.githubusercontent.com/ixjb94/ForceBindIP-Gui/master/dist/ForceBindIP%20-%20Download.exe", "ForceBindIP - Download.exe" ) ; Download
+		InetGet ( "https://github.com/ixjb94/ForceBindIP-Gui/releases/download/binary/ForceBindIP.-.Download.exe", "ForceBindIP - Download.exe" ) ; Download
 	EndIf
 
 EndFunc
