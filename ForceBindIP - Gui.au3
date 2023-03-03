@@ -69,53 +69,41 @@ While 1
 			MsgBox(0,"Input Can Not Be Empty","Please Enter Valid Data...")
 		 EndIf
 
-	Case $Button1
-		$iniX = getIniX("Button1")
-		runQuickCMD(getIniAddress("Button1"))
+	  Case $Button1
+		 runCMD(getIniAddress("Button1"))
 
 	  Case $Button2
-		$iniX = getIniX("Button2")
-		runQuickCMD(getIniAddress("Button2"))
+		 runCMD(getIniAddress("Button2"))
 
 	  Case $Button3
-		$iniX = getIniX("Button3")
-		runQuickCMD(getIniAddress("Button3"))
+		 runCMD(getIniAddress("Button3"))
 
 	  Case $Button4
-		$iniX = getIniX("Button4")
-		runQuickCMD(getIniAddress("Button4"))
+		 runCMD(getIniAddress("Button4"))
 
 	  Case $Button5
-		$iniX = getIniX("Button5")
-		runQuickCMD(getIniAddress("Button5"))
+		 runCMD(getIniAddress("Button5"))
 
 	  Case $Button6
-		$iniX = getIniX("Button6")
-		runQuickCMD(getIniAddress("Button6"))
+		 runCMD(getIniAddress("Button6"))
 
 	  Case $Button7
-		$iniX = getIniX("Button7")
-		runQuickCMD(getIniAddress("Button7"))
+		 runCMD(getIniAddress("Button7"))
 
 	  Case $Button8
-		$iniX = getIniX("Button8")
-		runQuickCMD(getIniAddress("Button8"))
+		 runCMD(getIniAddress("Button8"))
 
 	  Case $Button9
-		$iniX = getIniX("Button9")
-		runQuickCMD(getIniAddress("Button9"))
+		 runCMD(getIniAddress("Button9"))
 
 	  Case $Button10
-		$iniX = getIniX("Button10")
-		runQuickCMD(getIniAddress("Button10"))
+		 runCMD(getIniAddress("Button10"))
 
 	  Case $Button11
-		$iniX = getIniX("Button11")
-		runQuickCMD(getIniAddress("Button11"))
+		 runCMD(getIniAddress("Button11"))
 
 	  Case $Button12
-		$iniX = getIniX("Button12")
-		runQuickCMD(getIniAddress("Button12"))
+		 runCMD(getIniAddress("Button12"))
 
 	  Case $Button_Config
 		  ShellExecute($cFilePath)
@@ -146,27 +134,6 @@ Func getIniName($section,$param)
 
 EndFunc
 
-
-Func getIniAddress($section)
-
-	; Ini Array
-	Local $iArray = IniReadSection($cFilePath, $section)
-	$address = $iArray[2][1] ; Address
-	Return $address
-
-EndFunc
-
-
-Func getIniX($section)
-
-	; Ini Array
-	Local $iArray = IniReadSection($cFilePath, $section)
-	$x = $iArray[3][1] ; X
-	Return $x
-
-EndFunc
-
-
 Func setIniName()
 
 	getIniName("Button1",$Button1)
@@ -185,12 +152,21 @@ Func setIniName()
 EndFunc
 
 
+Func getIniAddress($section)
+
+	; Ini Array
+	Local $iArray = IniReadSection($cFilePath, $section)
+	$address = $iArray[2][1] ; Address
+	Return $address
+
+EndFunc
+
+
 Func createIniFile()
 
 	For $i = 1 To 12 Step 1
 		IniWrite ($cFilePath , "Button" & $i , "Name", "Button" & $i)
 		IniWrite ($cFilePath , "Button" & $i , "Address", "" & @CRLF)
-		;~ IniWrite ($cFilePath , "Button" & $i , "X", "" & @CRLF)
 	Next
 
 EndFunc
@@ -229,19 +205,6 @@ Func runCMD($address)
    Else
 	  MsgBox(1,"Select One Option", "Please Select One Option")
    EndIf
-
-EndFunc
-
-
-Func runQuickCMD($address)
-
-	If ($iniX = "86") Then
-	  Run("cmd /c ForceBindIP -i " & GUICtrlRead($Label_Internet) & ' ' & $address,"" , @SW_HIDE)
-	ElseIf ($iniX = "64") Then
-	  Run("cmd /c ForceBindIP64 -i " & GUICtrlRead($Label_Internet) & ' ' & $address,"" , @SW_HIDE)
-	Else
-	  MsgBox(1,"x64 / x86 Not Set", "Please Set 86 or 64 In X Section From Config File")
-	EndIf
 
 EndFunc
 
