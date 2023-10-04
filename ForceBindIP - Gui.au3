@@ -35,7 +35,6 @@ $Button9 = GUICtrlCreateButton("", 40, 280, 91, 25)
 $Button10 = GUICtrlCreateButton("", 192, 280, 91, 25)
 $Button11 = GUICtrlCreateButton("", 352, 280, 91, 25)
 $Button12 = GUICtrlCreateButton("", 496, 280, 91, 25)
-$Button_downloadConfig = GUICtrlCreateButton("Download and Config ForceBindIP", 40, 344, 203, 25)
 $Button_Config = GUICtrlCreateButton("Config", 432, 344, 155, 25)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Label_copyRight = GUICtrlCreateLabel("IX JB", 520, 400, 84, 17)
@@ -107,10 +106,6 @@ While 1
 
 	  Case $Button_Config
 		  ShellExecute($cFilePath)
-
-	  Case $Button_downloadConfig
-		  GetFileDownload()
-		  ShellExecute("ForceBindIP - Download.exe")
 
 	  Case $Combo_internetSelect
 		 $ComboString = GUICtrlRead($Combo_internetSelect)
@@ -205,16 +200,5 @@ Func runCMD($address)
    Else
 	  MsgBox(1,"Select One Option", "Please Select One Option")
    EndIf
-
-EndFunc
-
-
-Func GetFileDownload()
-
-    If FileExists(@ScriptDir & "\ForceBindIP - Download.exe") Then; System64
-		Return Null
-	Else
-		InetGet ( "https://github.com/ixjb94/ForceBindIP-Gui/releases/download/binary/ForceBindIP.-.Download.exe", "ForceBindIP - Download.exe" ) ; Download
-	EndIf
 
 EndFunc
