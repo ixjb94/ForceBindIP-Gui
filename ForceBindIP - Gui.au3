@@ -1,5 +1,3 @@
-Opt("TrayMenuMode",1)
-
 #include <ButtonConstants.au3>
 #include <ComboConstants.au3>
 #include <EditConstants.au3>
@@ -63,46 +61,54 @@ While 1
 
 	  Case $Button_runApp
 		 If GUICtrlRead($Input_appAddress) <> "" Then
-			runCMD(GUICtrlRead($Input_appAddress))
+
+			$x = ""
+			If (GUICtrlRead($Radio_x86) == 1) Then
+				$x = "86"
+			ElseIf (GUICtrlRead($Radio_x64) == 1) Then
+				$x = "64"
+			EndIf
+
+			runCMD(GUICtrlRead($Input_appAddress), $x)
 		 Else
 			MsgBox(0,"Input Can Not Be Empty","Please Enter Valid Data...")
 		 EndIf
 
 	  Case $Button1
-		 runCMD(getIniAddress("Button1"))
+		 runCMD(getIniAddress("Button1"), getIniX("Button1"))
 
 	  Case $Button2
-		 runCMD(getIniAddress("Button2"))
+		 runCMD(getIniAddress("Button2"), getIniX("Button2"))
 
 	  Case $Button3
-		 runCMD(getIniAddress("Button3"))
+		 runCMD(getIniAddress("Button3"), getIniX("Button3"))
 
 	  Case $Button4
-		 runCMD(getIniAddress("Button4"))
+		 runCMD(getIniAddress("Button4"), getIniX("Button4"))
 
 	  Case $Button5
-		 runCMD(getIniAddress("Button5"))
+		 runCMD(getIniAddress("Button5"), getIniX("Button5"))
 
 	  Case $Button6
-		 runCMD(getIniAddress("Button6"))
+		 runCMD(getIniAddress("Button6"), getIniX("Button6"))
 
 	  Case $Button7
-		 runCMD(getIniAddress("Button7"))
+		 runCMD(getIniAddress("Button7"), getIniX("Button7"))
 
 	  Case $Button8
-		 runCMD(getIniAddress("Button8"))
+		 runCMD(getIniAddress("Button8"), getIniX("Button8"))
 
 	  Case $Button9
-		 runCMD(getIniAddress("Button9"))
+		 runCMD(getIniAddress("Button9"), getIniX("Button9"))
 
 	  Case $Button10
-		 runCMD(getIniAddress("Button10"))
+		 runCMD(getIniAddress("Button10"), getIniX("Button10"))
 
 	  Case $Button11
-		 runCMD(getIniAddress("Button11"))
+		 runCMD(getIniAddress("Button11"), getIniX("Button11"))
 
 	  Case $Button12
-		 runCMD(getIniAddress("Button12"))
+		 runCMD(getIniAddress("Button12"), getIniX("Button12"))
 
 	  Case $Button_Config
 		  ShellExecute($cFilePath)
@@ -148,7 +154,6 @@ EndFunc
 
 
 Func getIniAddress($section)
-
 	; Ini Array
 	Local $iArray = IniReadSection($cFilePath, $section)
 	$address = $iArray[2][1] ; Address
@@ -156,12 +161,20 @@ Func getIniAddress($section)
 
 EndFunc
 
+Func getIniX($section)
+	; Ini Array
+	Local $iArray = IniReadSection($cFilePath, $section)
+	$x = $iArray[3][1] ; X
+	Return $x
+EndFunc
+
 
 Func createIniFile()
 
 	For $i = 1 To 12 Step 1
 		IniWrite ($cFilePath , "Button" & $i , "Name", "Button" & $i)
-		IniWrite ($cFilePath , "Button" & $i , "Address", "" & @CRLF)
+		IniWrite ($cFilePath , "Button" & $i , "Address", "")
+		IniWrite ($cFilePath , "Button" & $i , "X", "" & @CRLF)
 	Next
 
 EndFunc
@@ -190,15 +203,23 @@ Func GetInternet ()
 
 EndFunc
 
+Func runCMD($address, $x)
 
-Func runCMD($address)
+	;~ radio first = for overwriting on X
+	If (GUICtrlRead($Radio_x86) = 1 Or $x == "86") Then
+		Run("cmd /c ForceBindIP -i " & GUICtrlRead($Label_Internet) & ' ' & $address,"" , @SW_HIDE)
+	ElseIf (GUICtrlRead($Radio_x64) = 1 Or $x == "64") Then
+		Run("cmd /c ForceBindIP64 -i " & GUICtrlRead($Label_Internet) & ' ' & $address,"" , @SW_HIDE)
+	Else
+		MsgBox(0,"Select x86 | x64", "Please Select x86 or x64 or set it in .init file")
+	EndIf
 
-   If (GUICtrlRead($Radio_x86) = 1) Then
-	  Run("cmd /c ForceBindIP -i " & GUICtrlRead($Label_Internet) & ' ' & $address,"" , @SW_HIDE)
-   ElseIf (GUICtrlRead($Radio_x64) = 1) Then
-	  Run("cmd /c ForceBindIP64 -i " & GUICtrlRead($Label_Internet) & ' ' & $address,"" , @SW_HIDE)
-   Else
-	  MsgBox(1,"Select One Option", "Please Select One Option")
-   EndIf
+;~    If (GUICtrlRead($Radio_x86) = 1) Then
+;~ 	  Run("cmd /c ForceBindIP -i " & GUICtrlRead($Label_Internet) & ' ' & $address,"" , @SW_HIDE)
+;~    ElseIf (GUICtrlRead($Radio_x64) = 1) Then
+;~ 	  Run("cmd /c ForceBindIP64 -i " & GUICtrlRead($Label_Internet) & ' ' & $address,"" , @SW_HIDE)
+;~    Else
+;~ 	  MsgBox(1,"Select One Option", "Please Select One Option")
+;~    EndIf
 
 EndFunc

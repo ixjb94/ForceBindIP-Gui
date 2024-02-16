@@ -7,6 +7,14 @@ A Simple Application Written In AutoIt Programming language
 ## Download
 [Force Bind IP](https://github.com/ixjb94/ForceBindIP-Gui/releases/download/binary/ForceBindIP.-.Gui.exe)
 
+## Init
+The init file for Quick Access consists of these options:    
+1- Button=Button Name    
+2- Address=.exe address    
+3- X=86 or 64 (for setting it on default)    
+
+Please note that Radio Button (x86 | x64) will override the X inside .init file.
+
 ## Automatic 
 1. Run ForceBindIP-Gui.exe ( or compile .au3 it then open if u want )    
 2. Click On "Download and Config"
