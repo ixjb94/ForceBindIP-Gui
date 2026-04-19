@@ -22,10 +22,8 @@ Please note that Radio Button (x86 | x64) will override the X inside .init file.
 
 ## Manuel
 1. Download ForceBindIP ( https://r1ch.net/projects/forcebindip )    
-2. Copy ForceBindIP To C:\Windows\system32 (for x86)    
-3. Copy ForceBindIP To C:\Windows\sysWOW64 (for x64)    
-4. Run ForceBindIP-Gui.exe ( or compile .au3 it then open if u want )      
-5. Enjoy :)
+2. Run ForceBindIP-Gui.exe ( or compile .au3 it then open if u want )      
+3. Enjoy :)
 
 ## Google Chrome Compatibility
 Chrome requires additional configuration to run under ForceBindIP. This is because Chrome 72 or later blocks 3rd party programs from injecting DLLs. To allow ForceBindIP to work, install this enterprise policy registry file to re-enable DLL injection, then open Chrome and go to chrome://flags/#network-service-in-process and enable the setting (Chrome 76+) or chrome://flags#network-service and disable the setting (Chrome 75-).    
